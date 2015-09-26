@@ -9,7 +9,7 @@ class Users {
         $dbServer = 'localhost'; //Define database server host
         $dbUsername = 'root'; //Define database username
         $dbPassword = 'bigstep'; //Define database password
-        $dbName = 'codexworld'; //Define database name
+        $dbName = 'olxbasedadd'; //Define database name
         //Connect databse
         $con = mysqli_connect($dbServer, $dbUsername, $dbPassword, $dbName);
         if (mysqli_connect_errno()) {
