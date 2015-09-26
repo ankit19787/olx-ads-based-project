@@ -92,25 +92,74 @@ include_once("inc/twitteroauth.php");
             echo '</div>';
 
             //Get latest tweets
-            $my_tweets = $connection->get('statuses/user_timeline', array('screen_name' => $screen_name, 'count' =>5));
+            $my_tweets = $connection->get('statuses/user_timeline', array('screen_name' => $screen_name, 'count' => 5));
 
             echo '<div class="tweet_list"><strong>Latest Tweets : </strong>';
             echo '<ul>';
+            $my_tweets_array = array();
             foreach ($my_tweets as $my_tweet) {
                 echo '<li>' . $my_tweet->text . ' <br />-<i>' . $my_tweet->created_at . '</i></li>';
+
+                $my_tweets_array[] = $my_tweet->text;
             }
             echo '</ul></div>';
-            
+
             $code = $connection->get('friends/ids', array('screen_name' => $screen_name));
-            
+            $screen_name_array = array();
             foreach ($code as $ids) {
-               print_r($ids);
+                if ($ids) {
+                    foreach ($ids as $id) {
+                        $usershows = $connection->get('users/show', array('id' => $id));
+                        $screen_name_array[] = $usershows->screen_name;
+                    }
+                }
             }
-            die;
+            ?>
+
+
+            <br />
+            <?php echo '<b>Showing the user to ad on the basis of what he follows:</b>'; ?>
+
+            <br />
+            <br />
+            <?php $i = 0; ?>       
+            <?php foreach ($screen_name_array as $name): ?>
+
+                <?php if ($i == 5) : ?>
+                    <?php break; ?>
+                <?php endif; ?>
+                <?php $i++; ?>
+                <?php $url = 'http://olx.in/all-results/q-' . $name; ?>
+                <iframe src="<?php echo $url; ?>" style="height:300px;width:300px;"></iframe>
+
+
+            <?php endforeach; ?>
+            <br /> <br />
+            <?php echo '<b>Showing the user to ad on the basis of what he tweets:</b>'; ?>
+            <br /> <br />
+            <?php $j = 0; ?>       
+            <?php foreach ($my_tweets_array as $tweet): ?>
+
+                <?php if ($j == 5) : ?>
+                    <?php break; ?>
+                <?php endif; ?>
+                <?php $j++; ?>
+                <?php $url = 'http://olx.in/all-results/q-' . $tweet; ?>
+                <iframe src="<?php echo $url; ?>" style="height:300px;width:300px;"></iframe>
+            <?php endforeach; ?>
+
+            <?php
         } else {
             //Display login button
             echo '<a href="process.php"><img src="images/sign-in-with-twitter.png" width="151" height="24" border="0" /></a>';
         }
         ?>  
+
+
+
+
+
+
     </body>
 </html>
+
