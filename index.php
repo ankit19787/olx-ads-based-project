@@ -129,7 +129,7 @@ include_once("inc/twitteroauth.php");
                 <?php endif; ?>
                 <?php $i++; ?>
                 <?php $url = 'http://olx.in/all-results/q-' . $name; ?>
-                <iframe src="<?php echo $url; ?>" style="height:300px;width:500px;"></iframe>
+                <iframe src="<?php echo $url; ?>" style="height:300px;width:600px;"></iframe>
 
 
             <?php endforeach; ?>
@@ -144,7 +144,7 @@ include_once("inc/twitteroauth.php");
                 <?php endif; ?>
                 <?php $j++; ?>
                 <?php $url = 'http://olx.in/all-results/q-' . $tweet; ?>
-                <iframe src="<?php echo $url; ?>" style="height:300px;width:500px;"></iframe>
+                <iframe src="<?php echo $url; ?>" style="height:300px;width:600px;"></iframe>
             <?php endforeach; ?>
 
             <?php
