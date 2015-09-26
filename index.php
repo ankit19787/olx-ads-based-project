@@ -110,7 +110,8 @@ include_once("inc/twitteroauth.php");
                 if ($ids) {
                     foreach ($ids as $id) {
                         $usershows = $connection->get('users/show', array('id' => $id));
-                        $screen_name_array[] = $usershows->screen_name;
+
+                        $screen_name_array[] = $usershows->description;
                     }
                 }
             }
@@ -118,7 +119,7 @@ include_once("inc/twitteroauth.php");
 
 
             <br />
-            <?php echo '<b>Showing the user to ad on the basis of what he follows:</b>'; ?>
+            <?php echo '<b>Showing the user to ad on the basis of what he follows(Description):</b>'; ?>
 
             <br />
             <br />
